@@ -7,7 +7,7 @@ import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import { useState } from "react";
 
-export default function MoreCard() {
+export default function MoreCard(props) {
   const [info, setInfo] = useState([]);
   const top100Films = [
     { label: "1" },
@@ -28,25 +28,28 @@ export default function MoreCard() {
   ];
   const location = useLocation();
   const id = window.location.search.slice(1);
-
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `https://strapi-store-server.onrender.com/api/products/${id}`
+          `https://strapi-store-server.onrender.com/api/products/${id}`,
         );
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
         const data = await response.json();
         setInfo(data.data.attributes);
+        props.setShow(false);
       } catch (error) {
         console.log(error);
       }
     };
 
+    props.setShow(true);
     fetchData();
   }, []);
+
+
   useEffect(() => {
     // console.log(info);
   }, [info]);
@@ -56,8 +59,8 @@ export default function MoreCard() {
 
   return (
     <>
-    <div className="container">
-     <div className={styles.card__wrapper}>
+  {!props.show &&  <div className="container">
+      <div className={styles.card__wrapper}>
       <div className={styles.card__link}>
         <Link style={{ color: "#394E6A", textDecoration: "none" }} to="/">
           Home
@@ -91,7 +94,7 @@ export default function MoreCard() {
         </div>
       </div>
     </div>
-    </div>
+    </div>}
     </>
   );
 }

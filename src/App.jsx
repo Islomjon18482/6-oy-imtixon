@@ -36,7 +36,7 @@ function App() {
         <Route path='/about' element={<About></About>}/> 
         <Route path='/product' element={<Form show={showLoader}  setShow={setShowLoader}></Form>}/> 
         <Route path='/cart' element={<Cart></Cart>}/> 
-        <Route path='/more' element={<MoreCard></MoreCard>}/> 
+        <Route path='/more' element={<MoreCard show={showLoader}  setShow={setShowLoader}></MoreCard>}/> 
       </Routes>
       {showLoader && (<Loader></Loader>)}
     </BrowserRouter>
