@@ -1,9 +1,8 @@
-import React from "react";
 import styles from "./index.module.css";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 
 export default function About() {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   return (
     <div className={styles.container}>
       <div className={styles.wrapper}>

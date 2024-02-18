@@ -2,18 +2,18 @@ import React from "react";
 import styles from "./index.module.css";
 import { Link } from "react-router-dom";
 
+export default function Cardall({ data }) {
+  const { id, attributes } = data;
 
-export default function Cardall(props) {
-  const info = props.data;
   return (
-    <div className="container">
-    <Link style={{textDecoration: "none"}} to={`/more?${info.id}`}>
-          <div className={styles.card}>
-            <img src={info.attributes.image} alt="" />
-            <h3>{info.attributes.title}</h3>
-            <p>${info.attributes.price}</p>
-          </div>
-    </Link>
+    <div className={styles.container}>
+      <Link className={styles.link} to={`/more?${id}`}>
+        <div className={styles.card}>
+          <img src={attributes.image} alt="" />
+          <h3>{attributes.title}</h3>
+          <p>${attributes.price}</p>
+        </div>
+      </Link>
     </div>
   );
 }

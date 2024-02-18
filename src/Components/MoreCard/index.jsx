@@ -32,7 +32,7 @@ export default function MoreCard(props) {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `https://strapi-store-server.onrender.com/api/products/${id}`,
+          `https://strapi-store-server.onrender.com/api/products/${id}`
         );
         if (!response.ok) {
           throw new Error("Network response was not ok");
@@ -49,52 +49,54 @@ export default function MoreCard(props) {
     fetchData();
   }, []);
 
-
   useEffect(() => {
     // console.log(info);
   }, [info]);
   console.log(info);
   // console.log(info);
 
-
   return (
     <>
-  {!props.show &&  <div className="container">
-      <div className={styles.card__wrapper}>
-      <div className={styles.card__link}>
-        <Link style={{ color: "#394E6A", textDecoration: "none" }} to="/">
-          Home
-        </Link>
-        <Link
-          style={{ color: "#394E6A", textDecoration: "none" }}
-          to="/product"
-        >
-          Products
-        </Link>
-      </div>
-      <div className={styles.main__card}>
-        <div className={styles.img}>
-          <img src={info.image} />
-        </div>
-        <div className={styles.text}>
-          <h2>{info.title}</h2>
-          <h3>{info.company}</h3>
-          <h4>${info.price}</h4>
-          <p>{info.description}</p>
-          <div className={styles.inputs}>
-            <Autocomplete
-              disablePortal
-              id="combo-box-demo"
-              options={top100Films}
-              sx={{ width: 320 }}
-              renderInput={(params) => <TextField {...params} label="Amount" />}
-            />
+      {!props.show && (
+        <div className="container">
+          <div className={styles.card__wrapper}>
+            <div className={styles.card__link}>
+              <Link style={{ color: "#394E6A", textDecoration: "none" }} to="/">
+                Home
+              </Link>
+              <Link
+                style={{ color: "#394E6A", textDecoration: "none" }}
+                to="/product"
+              >
+                Products
+              </Link>
+            </div>
+            <div className={styles.main__card}>
+              <div className={styles.img}>
+                <img src={info.image} />
+              </div>
+              <div className={styles.text}>
+                <h2>{info.title}</h2>
+                <h3>{info.company}</h3>
+                <h4>${info.price}</h4>
+                <p>{info.description}</p>
+                <div className={styles.inputs}>
+                  <Autocomplete
+                    disablePortal
+                    id="combo-box-demo"
+                    options={top100Films}
+                    sx={{ width: 320 }}
+                    renderInput={(params) => (
+                      <TextField {...params} label="Amount" />
+                    )}
+                  />
+                </div>
+                <button className={styles.add}>ADD TO BAG</button>
+              </div>
+            </div>
           </div>
-          <button className={styles.add}>ADD TO BAG</button>
         </div>
-      </div>
-    </div>
-    </div>}
+      )}
     </>
   );
 }
