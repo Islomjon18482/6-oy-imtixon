@@ -10,6 +10,9 @@
   border-bottom: 1px solid var(--active-title-color);
   margin-bottom: 48px;
 }
+.cards__header p{
+  color: var(--nav-title-color);
+}
 .actions {
   display: flex;
   gap: 8px;

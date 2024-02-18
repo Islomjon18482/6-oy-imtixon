@@ -1,13 +1,15 @@
 import React from "react";
 import styles from "./index.module.css";
+import { useTranslation } from 'react-i18next';
 
 export default function About() {
+  const { t, i18n } = useTranslation();
   return (
     <div className={styles.container}>
       <div className={styles.wrapper}>
         <div className={styles.heading}>
           <h2>
-            We love <span>comfy</span>
+            {t("we")} <span>comfy</span>
           </h2>
         </div>
         <p>

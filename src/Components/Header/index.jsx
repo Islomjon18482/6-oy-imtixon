@@ -1,18 +1,26 @@
 import React from "react";
 import styles from "./index.module.css";
-import Box from "@mui/material/Box";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
+import { useTranslation } from 'react-i18next';
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
+import { useEffect } from "react";
 
 export default function Header(props) {
-  const [leng, setLeng] = useState("en");
+  const [leng, setLeng] = useState("");
+  const { t, i18n } = useTranslation();
+
+  useEffect(()=>{
+    if(localStorage.getItem("leng")){
+      let ln = localStorage.getItem("leng")
+      i18n.changeLanguage(ln)
+      setLeng(ln)
+    }
+  }, [])
 
   function lengChange(e){
     setLeng(e.target.value)
+    localStorage.setItem("leng", e.target.value)
+    i18n.changeLanguage(e.target.value)
   }
 
   function changeMode(){
@@ -34,22 +42,22 @@ export default function Header(props) {
           <ul>
             <li>
               <NavLink to="/">
-                <button>Home</button>
+                <button>{t("home")}</button>
               </NavLink>
             </li>
             <li>
               <NavLink to="/about">
-                <button>About</button>
+                <button>{t("about")}</button>
               </NavLink>
             </li>
             <li>
               <NavLink to="/product">
-                <button>Products</button>
+                <button>{t("productpage")}</button>
               </NavLink>
             </li>
             <li>
               <NavLink to="/cart">
-                <button>Cart</button>
+                <button>{t("cart")}</button>
               </NavLink>
             </li>
           </ul>

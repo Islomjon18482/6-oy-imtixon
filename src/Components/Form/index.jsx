@@ -7,19 +7,19 @@ import All from "../Allcards";
 import { useState } from "react";
 import { useRef } from "react";
 import { useEffect } from "react";
+import { useTranslation } from 'react-i18next';
 
-export default function Form() {
+export default function Form(props) {
   const [info, setInfo] = useState([]);
   const productRef = useRef();
   const categoryRef = useRef();
   const companyRef = useRef();
   const idRef = useRef();
   const chekRef = useRef();
-  const [inputValue, setInputValue] = useState(1000);
-  const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
-
+  const [inputValue, setInputValue] = useState(1000); 
+  const { t, i18n } = useTranslation();
   function reset(){
-    productRef.current.value = "all"
+    productRef.current.value = ""
     categoryRef.current.value = "all"
     companyRef.current.value = "all"
     idRef.current.value = "z-a"
@@ -29,11 +29,12 @@ export default function Form() {
   function getDataApi(){
     fetch("https://strapi-store-server.onrender.com/api/products")
     .then((res) => res.json())
-    .then((data) => setInfo(data.data))
+    .then((data) => {setInfo(data.data), props.setShow(false)})
     .catch((err) => console.log(err));
   }
 
   useEffect(() => {
+    props.setShow(true)
    getDataApi()
   }, []);
 
@@ -58,29 +59,29 @@ useEffect(() => {
 
   return (
     <>
-    <div className={styles.container}>
+    {!props.show && <div className={styles.container}>
       <div className={styles.form}>
         <form>
           <div className={styles.row}>
             <label>
-              <p>Search Product</p>
+              <p>{t("search")}</p>
               <input ref={productRef} type="text" className={styles.select} />
             </label>
             <label>
-              <p categoryRef>Select Category</p>
+              <p categoryRef>{t("category")}</p>
               <select ref={categoryRef} className={styles.select}>
-                <option value="all">all</option>
-                <option value="Tables">Tables</option>
-                <option value="Chairs">Chairs</option>
-                <option value="Kids">Kids</option>
-                <option value="Sofas">Sofas</option>
-                <option value="Beds">Beds</option>
+                <option value="all">{t("all")}</option>
+                <option value="Tables">{t("tables")}</option>
+                <option value="Chairs">{t("chairs")}</option>
+                <option value="Kids">{t("kids")}</option>
+                <option value="Sofas">{t("sofas")}</option>
+                <option value="Beds">{t("beds")}</option>
               </select>
             </label>
             <label>
-              <p>Select Company</p>
+              <p>{t("company")}</p>
               <select ref={companyRef} className={styles.select}>
-                <option value="all">all</option>
+                <option value="all">{t("all")}</option>
                 <option value="Modenza">Modenza</option>
                 <option value="Luxora">Luxora</option>
                 <option value="Artifex">Artifex</option>
@@ -89,18 +90,18 @@ useEffect(() => {
               </select>
             </label>
             <label>
-              <p>Sort By</p>
+              <p>{t("sort")}</p>
               <select ref={idRef} className={styles.select}>
                 <option value="z-a">z-a</option>
-                <option value="high">high</option>
-                <option value="low">low</option>
+                <option value="high">{t("high")}</option>
+                <option value="low">{t("low")}</option>
               </select>
             </label>
           </div>
           <div className={styles.row2}>
             <div className={styles.range}>
               <div className={styles.top__text}>
-                <p>Select Price</p>
+                <p>{t("price")}</p>
                 <p>${inputValue}0.00</p>
               </div>
               <Box sx={{ width: 244 }}>
@@ -123,7 +124,7 @@ useEffect(() => {
               </div>
             </div>
             <div className={styles.free}>
-              <p>Free shipping</p>
+              <p>{t("free")}</p>
               <div className={styles.check}>
                 <Checkbox
                   ref={chekRef}
@@ -132,18 +133,18 @@ useEffect(() => {
               </div>
             </div>
             <button onClick={(e) => search(e)} className={styles.search}>
-              Search
+            {t("searchBtn")}
             </button>
             <button onClick={(e) => {
               e.preventDefault()
               getDataApi()
               reset()
-            }} className={styles.reset}>Reset</button>
+            }} className={styles.reset}>{t("reset")}</button>
           </div>
         </form>
       </div>
       <All filter={setInfo} data={info}></All>
-    </div>
+    </div>}
     </>
   );
 }

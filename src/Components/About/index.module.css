@@ -37,7 +37,7 @@
   background: var(--btn-color);
 }
 .wrapper p {
-  color: var(#394e6a);
+  color: var(--home-title-big-color);
   font-size: 17.72px;
   font-weight: 400;
   line-height: 32px;

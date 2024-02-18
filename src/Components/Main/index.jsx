@@ -3,21 +3,23 @@ import styles from "./index.module.css";
 import Featured from "../Featured";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { useTranslation } from 'react-i18next';
 
 export default function Main() {
   const [data, setData] = useState([])
+  const { t, i18n } = useTranslation();
   return (
     <>
     <div className="container">
     <div className={styles.main}>
       <div className={styles.main__text}>
-        <h2>We are changing the way people shop</h2>
+        <h2>{t("mision")}</h2>
         <p>
           Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore
           repellat explicabo enim soluta temporibus asperiores aut obcaecati
           perferendis porro nobis.
         </p>
-        <Link to="/product"><button>Our Products </button></Link>
+        <Link to="/product"><button>{t("our")}</button></Link>
       </div>
       <div className={styles.slayder}>
         <img src="slide1.webp" />
