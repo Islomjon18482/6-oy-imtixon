@@ -1,0 +1,21 @@
+.wrapper{
+    margin:0px auto;
+    width: 1088px;
+height: 57px;
+box-sizing: border-box;
+border-bottom: 1px solid var(--active-title-color);
+}
+.container{
+    padding-top: 105.5px;
+    background-color: var(--body-bg-color);
+    height: 100vh;
+}
+.wrapper h2{
+    color: var(--home-title-big-color);
+font-size: 30px;
+font-weight: 400;
+line-height: 36px;
+letter-spacing: 1.5px;
+text-align: left;
+text-transform: capitalize;
+}

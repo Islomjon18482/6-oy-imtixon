@@ -1,0 +1,26 @@
+{
+    "en": {
+        "translation": {
+          "we": "We love",
+          "product": "products",
+          "empty": "Your cart is empty",
+          "fatured": "Featured Products"
+        }
+    },
+    "uz": {
+        "translation": {
+          "we": "Biz sevamiz",
+          "product": "mahsulotlar",
+          "empty": "Savatingiz boʻsh",
+          "fatured": "Tanlangan mahsulotlar"
+        }
+    },
+    "ru": {
+        "translation": {
+          "we": "Мы любим",
+          "product": "продукты",
+          "empty": "Ваша корзина пуста",
+          "fatured": "Рекомендуемые продукты"
+        }
+    }
+}
