@@ -7,7 +7,7 @@ export default function Cardall({ data }) {
 
   return (
     <div className={styles.container}>
-      <Link className={styles.link} to={`/more?${id}`}>
+      <Link style={{textDecoration: "none"}} className={styles.link} to={`/more?${id}`}>
         <div className={styles.card}>
           <img src={attributes.image} alt="" />
           <h3>{attributes.title}</h3>
