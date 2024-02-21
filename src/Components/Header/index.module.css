@@ -6,6 +6,23 @@
   justify-content: space-between;
   align-items: center;
 }
+.basket{
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.basket p{
+  font-family: sans-serif;
+  position: absolute;
+  top: -9px;
+  left: 19px;
+  color: gray;
+}
+.basket img{
+  width: 20px;
+  height: 20px;
+}
+
 .container {
   width: 100%;
   background-color: var(--header-bg-color);

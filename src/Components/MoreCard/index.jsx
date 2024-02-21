@@ -1,33 +1,25 @@
 import React from "react";
 import styles from "./index.module.css";
 import { Link } from "react-router-dom";
-import TextField from "@mui/material/TextField";
-import Autocomplete from "@mui/material/Autocomplete";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
-import { useState } from "react";
+import { useState} from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function MoreCard(props) {
+
+  const [num, setNum] = useState(1)
+
   const [info, setInfo] = useState([]);
-  const top100Films = [
-    { label: "1" },
-    { label: "2" },
-    { label: "3" },
-    { label: "4" },
-    { label: "5" },
-    { label: "6" },
-    { label: "7" },
-    { label: "8" },
-    { label: "9" },
-    { label: "10" },
-    { label: "11" },
-    { label: "12" },
-    { label: "13" },
-    { label: "14" },
-    { label: "15" },
-  ];
   const location = useLocation();
   const id = window.location.search.slice(1);
+
+
+  const card = useSelector(state => state)
+
+
+  const dispatch = useDispatch()
+  
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -50,10 +42,17 @@ export default function MoreCard(props) {
   }, []);
 
   useEffect(() => {
-    // console.log(info);
+
   }, [info]);
-  console.log(info);
-  // console.log(info);
+
+
+  function add(){
+    if(!info.num){
+      info.num = Number(num)
+    }
+    dispatch({type: "ADD", payload: info})
+  }
+
 
   return (
     <>
@@ -81,17 +80,20 @@ export default function MoreCard(props) {
                 <h4>${info.price}</h4>
                 <p>{info.description}</p>
                 <div className={styles.inputs}>
-                  <Autocomplete
-                    disablePortal
-                    id="combo-box-demo"
-                    options={top100Films}
-                    sx={{ width: 320 }}
-                    renderInput={(params) => (
-                      <TextField {...params} label="Amount" />
-                    )}
-                  />
+                  <select value={num} onChange={(e)=> {setNum(e.target.value)}}>
+                    <option value={1}>1</option>
+                    <option value={2}>2</option>
+                    <option value={3}>3</option>
+                    <option value={4}>4</option>
+                    <option value={5}>5</option>
+                    <option value={6}>6</option>
+                    <option value={7}>7</option>
+                    <option value={8}>8</option>
+                    <option value={9}>9</option>
+                    <option value={10}>10</option>
+                  </select>
                 </div>
-                <button className={styles.add}>ADD TO BAG</button>
+                <button onClick={add} className={styles.add}>ADD TO BAG</button>
               </div>
             </div>
           </div>

@@ -2,12 +2,22 @@ import React from "react";
 import styles from "./index.module.css";
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { useEffect } from "react";
+import { useSelector } from "react-redux";
 
 export default function Header(props) {
   const [leng, setLeng] = useState("");
   const { t, i18n } = useTranslation();
+
+  const cardNum = useSelector(state => state.cards)
+  
+
+  let sumNum = 0
+  cardNum.forEach(element => {
+    sumNum += element.num
+  });
+
 
   useEffect(() => {
     if (localStorage.getItem("leng")) {
@@ -71,6 +81,12 @@ export default function Header(props) {
                 src="/moon.svg"
               />
             </div>
+            <Link to="/cart">
+            <div className={styles.basket}>
+                <img src="/cart.svg" />
+                <p>{cardNum.length}</p>
+            </div>
+            </Link>
             <div className={styles.leng}>
               <select
                 value={leng}

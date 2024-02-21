@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 
 export default function Cardall({ data }) {
   const { id, attributes } = data;
-
   return (
     <div className={styles.container}>
       <Link style={{textDecoration: "none"}} className={styles.link} to={`/more?${id}`}>
